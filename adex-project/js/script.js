@@ -119,7 +119,7 @@ const team = [
         role: "Chief Financial Officer (CFO)",
         desc: "Manages finance, budgeting and financial planning.",
         image: "images/pallvai.jpeg",
-        linkedin: "https://www.linkedin.com/in/pallavi-garje-4704a5381/"
+        linkedin: "https://www.linkedin.com/in/pallavi-garje-4704a5381"
     },
 
     {
