@@ -1,3 +1,27 @@
+const siteIntro=document.getElementById('siteIntro');
+document.body.classList.add('intro-active');
+if(siteIntro){
+	const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const introDuration=reducedMotion?0:5000;
+	siteIntro.style.setProperty('--intro-fade-delay',`${Math.max(0,introDuration-700)}ms`);
+	const progressBar=siteIntro.querySelector('.site-intro-progress span');
+	if(progressBar&&introDuration){
+		progressBar.style.animationDuration=`${introDuration}ms`;
+	}
+	const introSound=document.getElementById('introSound');
+	const playIntroSound=()=>{
+		if(!introSound)return;
+		introSound.volume=.65;
+		introSound.play().catch(()=>{});
+	};
+	playIntroSound();
+	setTimeout(()=>{
+		siteIntro.classList.add('is-done');
+		document.body.classList.remove('intro-active');
+		document.body.classList.add('intro-complete');
+		setTimeout(()=>siteIntro.remove(),700);
+	},introDuration);
+}
 const team=[
 {name:'Adityapratap Singh',role:'Founder & CEO',desc:'Owns the company vision, strategy, leadership and long-term direction.',image:'images/adityasingh.jpeg',linkedin:'https://www.linkedin.com/in/aadi-p-s/'},
 {name:'Dhananjay Bajgude',role:'Chief Technology Officer',desc:'Owns technology, engineering, technical architecture and R&D.',image:'images/dhananjaybajgude.jpeg',linkedin:'https://www.linkedin.com/in/dhananjaybajgude'},

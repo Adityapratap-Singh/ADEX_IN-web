@@ -14,13 +14,22 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+  <div class="site-intro" id="siteIntro" role="status" aria-live="polite">
+    <div class="site-intro-content">
+      <img class="site-intro-logo" src="images/black-logo.png" alt="ADEX_IN logo">
+      <p class="site-intro-name">ADEX_IN</p>
+      <p class="site-intro-tagline" aria-label="See Differently. Build Differently."><span class="intro-word">See</span> <span class="intro-word">Differently.</span><br><strong><span class="intro-word">Build</span> <span class="intro-word">Differently.</span></strong></p>
+      <div class="site-intro-progress" aria-hidden="true"><span></span></div>
+    </div>
+    <audio id="introSound" src="audio/adex_welcome.mp3" preload="auto" autoplay></audio>
+  </div>
   <div class="progress" id="progress"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
 
   <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a class="brand" href="#home" aria-label="ADEX_IN home">
-        <span class="brand-mark"><img src="images/adex-logo.png" alt="" onerror="this.style.display='none'">A</span>
+        <span class="brand-mark"><img src="images/adex-logo.png" alt="" onerror="this.style.display='none'" height="100%">A</span>
         <span>ADEX_<b>IN</b></span>
       </a>
       <nav class="desktop-nav" aria-label="Primary navigation">
@@ -64,12 +73,11 @@
         <div class="hero-stage reveal" id="heroStage" aria-label="ADEX_IN technology and accessibility visual">
           <div class="stage-label label-one">01 / HUMAN NEED</div><div class="stage-label label-two">02 / TECHNOLOGY</div><div class="stage-label label-three">03 / IMPACT</div>
           <div class="stage-grid"></div><div class="stage-ring ring-one"></div><div class="stage-ring ring-two"></div><div class="stage-ring ring-three"></div><div class="stage-ring ring-four"></div><div class="stage-ring ring-five"></div>
-          <div class="stage-core"><div class="core-inner"><span>ADEX</span><b>IN</b></div></div>
+          <div class="stage-core"><div class="core-inner"><img src="./images/adex-logo-white.png" alt="white logo" height="120px"></div></div>
           <div class="node node-one"><span>ACCESS</span><small>DESIGN</small></div>
           <div class="node node-two"><span>ASSIST</span><small>TECH</small></div>
           <div class="node node-three"><span>EMPOWER</span><small>PEOPLE</small></div>
-          <div class="stage-line line-one"></div><div class="stage-line line-two"></div><div class="stage-line line-three"></div>
-          <div class="stage-footer"><span>EXPLORE</span><span>EXPERIMENT</span><span>BUILD</span></div>
+          <div class="stage-footer"><span><u>EXPLORE</u></span><span><u>EXPERIMENT</u></span><span><u>BUILD</u></span></div>
         </div>
       </div>
       <div class="container hero-bottom"><span>01</span><p>Real problems</p><span>02</span><p>Human-centered design</p><span>03</span><p>Technology with purpose</p><span>04</span><p>Global accessibility</p></div>
@@ -100,14 +108,14 @@
           <div class="principle reveal"><b>01</b><div><h3>Accessibility first</h3><p>People come before the technology.</p></div></div>
           <div class="principle reveal"><b>02</b><div><h3>Innovation with purpose</h3><p>We build because a problem is worth solving.</p></div></div>
           <div class="principle reveal"><b>03</b><div><h3>Human-centered design</h3><p>Real experiences shape what we create.</p></div></div>
-          <div class="principle reveal"><b>04</b><div><h3>Explore · Experiment · Build</h3><p>Ideas become products through iteration.</p></div></div>
+          <div class="principle reveal"><b>04</b><div><h3>Explore · <h3>Experiment · Build</h3><p>Ideas become products through iteration.</p></div></div>
         </div>
       </div>
     </section>
 
     <section class="products section" id="products">
       <div class="container">
-        <div class="section-top reveal"><div><p class="eyebrow-text">04 — PRODUCTS</p><h2>Our first product is <em>already taking shape.</em></h2></div><p>One product today. A platform for many possibilities tomorrow.</p></div>
+        <div class="section-top reveal"><div><p class="eyebrow-text">04 — PRODUCTS</p><h2>Our product(s) are <em>already taking shape.</em></h2></div></div>
         <div class="product-grid">
         <article class="product-card product-card-compact reveal" id="productCard" tabindex="0" role="button" aria-label="Open ADEX_ISL product details" aria-controls="productDetails" aria-expanded="false">
           <div class="product-visual"><div class="product-orbit"></div><div class="product-hand">ISL</div><span class="product-chip chip-a">COMPUTER VISION</span><span class="product-chip chip-b">LOCAL AI</span><span class="product-chip chip-c">ACCESSIBILITY</span></div>
@@ -131,7 +139,7 @@
 
     <section class="team section" id="team">
       <div class="container">
-        <div class="section-top reveal"><div><p class="eyebrow-text">06 — LEADERSHIP</p><h2>Different roles.<br><em>One direction.</em></h2></div><p>The people responsible for turning the ADEX_IN vision into an operating company.</p></div>
+        <div class="section-top reveal"><div><p class="eyebrow-text">06 — LEADERSHIP</p><h2>Different roles.<br><em>One direction.</em></h2></div></div>
         <div class="team-grid" id="teamGrid"></div>
       </div>
     </section>
