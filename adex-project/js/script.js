@@ -15,6 +15,9 @@ if(siteIntro){
 		introSound.play().catch(()=>{});
 	};
 	playIntroSound();
+	['pointerdown','keydown','touchstart'].forEach(eventName=>{
+		document.addEventListener(eventName,playIntroSound,{once:true,passive:true});
+	});
 	setTimeout(()=>{
 		siteIntro.classList.add('is-done');
 		document.body.classList.remove('intro-active');
