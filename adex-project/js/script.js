@@ -15,6 +15,8 @@ if(siteIntro){
 		introSound.play().catch(()=>{});
 	};
 	playIntroSound();
+	['loadedmetadata','canplay'].forEach(eventName=>introSound.addEventListener(eventName,playIntroSound,{once:true}));
+	addEventListener('load',playIntroSound,{once:true});
 	['pointerdown','keydown','touchstart'].forEach(eventName=>{
 		document.addEventListener(eventName,playIntroSound,{once:true,passive:true});
 	});
