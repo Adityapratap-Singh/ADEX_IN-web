@@ -9,17 +9,38 @@ if(siteIntro){
 		progressBar.style.animationDuration=`${introDuration}ms`;
 	}
 	const introSound=document.getElementById('introSound');
+	let introSoundStarted=false;
 	const playIntroSound=()=>{
-		if(!introSound)return;
+		if(!introSound || introSoundStarted)return;
 		introSound.volume=.65;
-		introSound.play().catch(()=>{});
+		const attempt=introSound.play();
+		if(attempt && typeof attempt.then==='function'){
+			attempt.then(()=>{
+				introSoundStarted=true;
+				removeSoundFallbackListeners();
+			}).catch(()=>{});
+		}
 	};
+	const removeSoundFallbackListeners=()=>{
+		['pointerdown','keydown','touchstart','click'].forEach(eventName=>{
+			document.removeEventListener(eventName,playIntroSound);
+		});
+	};
+	// First attempt: play immediately on page load.
+	// If the browser blocks audible autoplay, the first user interaction
+	// (click/tap/key) becomes the fallback and starts the same sound.
 	playIntroSound();
-	['loadedmetadata','canplay'].forEach(eventName=>introSound.addEventListener(eventName,playIntroSound,{once:true}));
-	addEventListener('load',playIntroSound,{once:true});
-	['pointerdown','keydown','touchstart'].forEach(eventName=>{
-		document.addEventListener(eventName,playIntroSound,{once:true,passive:true});
+	['loadedmetadata','canplay','canplaythrough'].forEach(eventName=>{
+		introSound.addEventListener(eventName,playIntroSound,{once:true});
 	});
+	addEventListener('load',playIntroSound,{once:true});
+	addEventListener('pageshow',playIntroSound,{once:true});
+	['pointerdown','keydown','touchstart','click'].forEach(eventName=>{
+		document.addEventListener(eventName,playIntroSound,{passive:true});
+	});
+	document.addEventListener('visibilitychange',()=>{
+		if(document.visibilityState==='visible' && introSound.paused) playIntroSound();
+	},{once:true});
 	setTimeout(()=>{
 		siteIntro.classList.add('is-done');
 		document.body.classList.remove('intro-active');
