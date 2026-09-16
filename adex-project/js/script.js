@@ -54,7 +54,13 @@ const team=[
 {name:'Sanket Kokane',role:'Chief Product Officer',desc:'Owns product strategy, user needs, priorities and the product roadmap.',image:'images/sanket.jpeg',linkedin:'https://www.linkedin.com/in/sanket-kokane-8968bb2b7'},
 {name:'Avdhesh Kumar Gupta',role:'Chief Operating Officer',desc:'Owns operations, execution, processes and team coordination.',image:'images/avs.jpeg',linkedin:'https://www.linkedin.com/in/Avs-Avdhesh-gupta'},
 {name:'Pallavi Garje',role:'Chief Financial Officer',desc:'Owns finance, budgeting, planning and financial sustainability.',image:'images/pallvai.jpeg',linkedin:'https://www.linkedin.com/in/pallavi-garje-4704a5381'},
-{name:'Manas Koyande',role:'Chief Marketing Officer',desc:'Owns brand, marketing, communications and audience growth.',image:'images/manas.jpeg',linkedin:'https://www.linkedin.com/in/manas-koyande-b18249350/'}
+{
+        name: "Manas Koyande",
+        role: "Chief AI Officer (CAIO)",
+        desc: "Leads AI strategy, development and implementation.",
+        image: "images/manas.jpeg",
+        linkedin: "https://www.linkedin.com/"
+}
 ];
 const initials=n=>n.split(' ').map(x=>x[0]).slice(0,2).join('');
 const teamGrid=document.getElementById('teamGrid');
