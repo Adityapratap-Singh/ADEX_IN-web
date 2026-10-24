@@ -1,0 +1,15 @@
+{
+  "name": "adex-in-mern",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "install:all": "npm install && npm install --prefix client && npm install --prefix server"
+  },
+  "description": "This project migrates the ADEX_IN HTML/CSS/JS site into a React frontend + Express API + MongoDB data layer.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
