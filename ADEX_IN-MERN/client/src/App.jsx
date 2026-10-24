@@ -7,9 +7,9 @@ export default function App() {
   const location = useLocation();
   useEffect(() => {
     if (location.pathname === "/adityapratap-singh") {
-      document.title = "Aditya Pratap Singh — Founder & CEO, ADEX-IN";
+      document.title = "Adityapratap Singh — Founder & CEO, ADEX-IN";
       document.querySelector('meta[name="description"]')?.setAttribute("content",
-        "Aditya Pratap Singh, Founder & CEO of ADEX-IN. Software, machine learning, and connected systems — from experiment to working prototype.");
+        "Adityapratap Singh, Founder & CEO of ADEX-IN. Software, machine learning, and connected systems — from experiment to working prototype.");
     } else {
       document.title = "ADEX-IN — See Differently. Build Differently.";
       document.querySelector('meta[name="description"]')?.setAttribute("content",

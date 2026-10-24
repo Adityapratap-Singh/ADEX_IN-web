@@ -7,6 +7,23 @@ import {
   verifiedProjects,
 } from "../data/portfolioData.js";
 
+const portfolioSections = [
+  "top",
+  "about",
+  "founder",
+  "architecture",
+  "work",
+  "skills",
+  "philosophy",
+  "focus",
+  "contact",
+];
+
+function getSectionFromHash() {
+  const section = window.location.hash.slice(1);
+  return portfolioSections.includes(section) ? section : "top";
+}
+
 // Custom Crisp SVG Icons
 function GithubIcon({ className = "icon" }) {
   return (
@@ -33,6 +50,7 @@ function XIcon({ className = "icon" }) {
 }
 
 export default function Profile() {
+  const [activeSection, setActiveSection] = useState(getSectionFromHash);
   const [activeArchTab, setActiveArchTab] = useState("homie");
   const [selectedProject, setSelectedProject] = useState(null);
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -47,6 +65,32 @@ export default function Profile() {
   const [loadPct, setLoadPct] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [scrollPct, setScrollPct] = useState(0);
+
+  useEffect(() => {
+    const handleHistoryNavigation = () => {
+      setActiveSection(getSectionFromHash());
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("popstate", handleHistoryNavigation);
+    window.addEventListener("hashchange", handleHistoryNavigation);
+    return () => {
+      window.removeEventListener("popstate", handleHistoryNavigation);
+      window.removeEventListener("hashchange", handleHistoryNavigation);
+    };
+  }, []);
+
+  const navigateToSection = (section) => {
+    if (!portfolioSections.includes(section)) return;
+    setActiveSection(section);
+    if (window.location.hash !== `#${section}`) {
+      window.history.pushState(null, "", `#${section}`);
+    }
+    window.scrollTo(0, 0);
+  };
+  const handleSectionClick = (section) => (e) => {
+    e.preventDefault();
+    navigateToSection(section);
+  };
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -147,6 +191,8 @@ export default function Profile() {
       "ESP32",
       "Next.js",
       "Python",
+      "Leadership & Team Collaboration",
+      "Public Speaking & Presentations",
     ],
   };
 
@@ -183,20 +229,21 @@ export default function Profile() {
           <Link to="/" className="port-brand">
             <span className="port-monogram">AS</span>
             <div className="port-brand-text">
-              <strong>Aditya Pratap Singh</strong>
+              <strong className="port-name-animated">{profileData.name}</strong>
               <small>Founder · Systems Builder</small>
             </div>
           </Link>
 
           <nav className="port-nav-links">
-            <a href="#about">About</a>
-            <a href="#founder">Venture</a>
-            <a href="#architecture">Systems</a>
-            <a href="#work">Work</a>
-            <a href="#skills">Skills</a>
-            <a href="#philosophy">Philosophy</a>
-            <a href="#focus">Focus</a>
-            <a href="#contact">Contact</a>
+            <a href="#top" aria-current={activeSection === "top" ? "page" : undefined} onClick={handleSectionClick("top")}>Overview</a>
+            <a href="#about" aria-current={activeSection === "about" ? "page" : undefined} onClick={handleSectionClick("about")}>About</a>
+            <a href="#founder" aria-current={activeSection === "founder" ? "page" : undefined} onClick={handleSectionClick("founder")}>Venture</a>
+            <a href="#architecture" aria-current={activeSection === "architecture" ? "page" : undefined} onClick={handleSectionClick("architecture")}>Systems</a>
+            <a href="#work" aria-current={activeSection === "work" ? "page" : undefined} onClick={handleSectionClick("work")}>Work</a>
+            <a href="#skills" aria-current={activeSection === "skills" ? "page" : undefined} onClick={handleSectionClick("skills")}>Skills</a>
+            <a href="#philosophy" aria-current={activeSection === "philosophy" ? "page" : undefined} onClick={handleSectionClick("philosophy")}>Philosophy</a>
+            <a href="#focus" aria-current={activeSection === "focus" ? "page" : undefined} onClick={handleSectionClick("focus")}>Focus</a>
+            <a href="#contact" aria-current={activeSection === "contact" ? "page" : undefined} onClick={handleSectionClick("contact")}>Contact</a>
           </nav>
 
           <div className="port-nav-right">
@@ -212,7 +259,7 @@ export default function Profile() {
       </header>
 
       {/* 1. HERO SECTION */}
-      <section className="port-hero" id="top">
+      <section className="port-hero" id="top" hidden={activeSection !== "top"}>
         <div className="port-wrap port-hero-grid">
           <div className="port-hero-copy">
             <p className="port-eyebrow">
@@ -228,13 +275,13 @@ export default function Profile() {
             <p className="port-hero-lead">{profileData.shortBio}</p>
 
             <div className="port-hero-actions">
-              <a href="#work" className="port-btn-primary">
+              <a href="#work" className="port-btn-primary" onClick={handleSectionClick("work")}>
                 Explore My Work <span>↘</span>
               </a>
-              <a href="#contact" className="port-btn-secondary">
+              <a href="#contact" className="port-btn-secondary" onClick={handleSectionClick("contact")}>
                 Get in Touch <span>↗</span>
               </a>
-              <a href="#about" className="port-link-subtle">
+              <a href="#about" className="port-link-subtle" onClick={handleSectionClick("about")}>
                 About Me →
               </a>
             </div>
@@ -284,7 +331,7 @@ export default function Profile() {
       </section>
 
       {/* 2. ABOUT ME */}
-      <section className="port-section port-section--paper" id="about">
+      <section className="port-section port-section--paper" id="about" hidden={activeSection !== "about"}>
         <div className="port-wrap">
           <p className="port-section-tag">01 — ABOUT ME</p>
           <div className="port-split-layout">
@@ -319,7 +366,7 @@ export default function Profile() {
               <div className="port-photo-frame">
                 <img
                   src="/images/adityasingh.jpeg"
-                  alt="Aditya Pratap Singh"
+                  alt={profileData.name}
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
@@ -330,7 +377,7 @@ export default function Profile() {
                   <span>Based in</span>
                   <span className="port-status-emerald">India · IST</span>
                 </div>
-                <strong>Aditya Pratap Singh</strong>
+                <strong className="port-name-animated">{profileData.name}</strong>
                 <small>Curiosity into capability.</small>
               </div>
             </div>
@@ -350,7 +397,7 @@ export default function Profile() {
       </section>
 
       {/* 3. ADEX-IN FOUNDER SECTION */}
-      <section className="port-section port-section--blush" id="founder">
+      <section className="port-section port-section--blush" id="founder" hidden={activeSection !== "founder"}>
         <div className="port-wrap">
           <p className="port-section-tag">02 — FOUNDER INITIATIVE</p>
 
@@ -411,7 +458,7 @@ export default function Profile() {
       </section>
 
       {/* 4. INTERACTIVE SYSTEM ARCHITECTURES */}
-      <section className="port-section port-section--paper" id="architecture">
+      <section className="port-section port-section--paper" id="architecture" hidden={activeSection !== "architecture"}>
         <div className="port-wrap">
           <div className="port-section-header-split">
             <div>
@@ -470,7 +517,7 @@ export default function Profile() {
       </section>
 
       {/* 5. VERIFIED FEATURED PROJECTS */}
-      <section className="port-section" id="work">
+      <section className="port-section" id="work" hidden={activeSection !== "work"}>
         <div className="port-wrap">
           <p className="port-section-tag">04 — VERIFIED PROJECTS</p>
           <div className="port-section-header-split">
@@ -586,7 +633,7 @@ export default function Profile() {
       </section>
 
       {/* 7. TECHNICAL SKILLS MATRIX */}
-      <section className="port-section port-section--paper" id="skills">
+      <section className="port-section port-section--paper" id="skills" hidden={activeSection !== "skills"}>
         <div className="port-wrap">
           <p className="port-section-tag">05 — TECHNICAL PROFILE</p>
           <h2 className="port-section-title">Capabilities &amp; Technical Domain.</h2>
@@ -645,7 +692,7 @@ export default function Profile() {
       </section>
 
       {/* 8. ENGINEERING PHILOSOPHY */}
-      <section className="port-section port-section--blush" id="philosophy">
+      <section className="port-section port-section--blush" id="philosophy" hidden={activeSection !== "philosophy"}>
         <div className="port-wrap">
           <p className="port-section-tag">06 — HOW I BUILD</p>
           <h2 className="port-section-title">Engineering Philosophy.</h2>
@@ -674,7 +721,7 @@ export default function Profile() {
       </section>
 
       {/* 9. CURRENT FOCUS */}
-      <section className="port-section port-section--paper" id="focus">
+      <section className="port-section port-section--paper" id="focus" hidden={activeSection !== "focus"}>
         <div className="port-wrap">
           <div className="port-section-header-split">
             <div>
@@ -711,7 +758,7 @@ export default function Profile() {
       </section>
 
       {/* 10. CONTACT & SOCIAL COORDINATES (WITH X LINK READY) */}
-      <section className="port-section port-section--blush" id="contact">
+      <section className="port-section port-section--blush" id="contact" hidden={activeSection !== "contact"}>
         <div className="port-wrap">
           <p className="port-section-tag">08 — CONTACT &amp; COLLABORATION</p>
           <h2 className="port-section-title">Start a conversation.</h2>
@@ -879,12 +926,12 @@ export default function Profile() {
       </section>
 
       {/* Footer */}
-      <footer className="port-footer">
+      <footer className="port-footer" hidden={activeSection !== "contact"}>
         <div className="port-wrap port-footer-inner">
           <div>
             <div className="port-brand">
               <span className="port-monogram">AS</span>
-              <span>Aditya Pratap Singh</span>
+              <span className="port-name-animated">{profileData.name}</span>
             </div>
             <p className="port-footer-desc">
               Building at the convergence of software, hardware, and intelligent systems. Founder &amp; CEO of{" "}
@@ -894,10 +941,10 @@ export default function Profile() {
 
           <div className="port-footer-links">
             <Link to="/">ADEX-IN Home</Link>
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <a href="#architecture">Architecture</a>
-            <a href="#contact">Contact</a>
+            <a href="#about" onClick={handleSectionClick("about")}>About</a>
+            <a href="#work" onClick={handleSectionClick("work")}>Work</a>
+            <a href="#architecture" onClick={handleSectionClick("architecture")}>Architecture</a>
+            <a href="#contact" onClick={handleSectionClick("contact")}>Contact</a>
           </div>
 
           <div className="port-footer-socials">
@@ -907,8 +954,8 @@ export default function Profile() {
           </div>
         </div>
         <div className="port-wrap port-footer-bottom">
-          <small>© {new Date().getFullYear()} Aditya Pratap Singh. All rights reserved.</small>
-          <a href="#top" className="port-top-link">Back to top ↑</a>
+          <small>© {new Date().getFullYear()} {profileData.name}. All rights reserved.</small>
+          <a href="#top" className="port-top-link" onClick={handleSectionClick("top")}>Back to overview ↑</a>
         </div>
       </footer>
 

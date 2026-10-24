@@ -185,6 +185,7 @@
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
+.portfolio-container [hidden] { display: none !important; }
 .portfolio-container h1,
 .portfolio-container h2,
 .portfolio-container h3,
@@ -323,6 +324,24 @@
 }
 .port-brand-text { display: flex; flex-direction: column; }
 .port-brand-text strong { font-size: 13px; font-weight: 700; line-height: 1.2; }
+.port-name-animated {
+  position: relative;
+  display: inline-block;
+  animation: portNameIn 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+.port-name-animated::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--p-rose-dark), var(--p-rose-light), transparent);
+  transform: scaleX(0.35);
+  transform-origin: center;
+  animation: portNameTrace 3.2s ease-in-out 650ms infinite;
+}
 .port-brand-text small {
   font-size: 9px;
   color: var(--p-muted);
@@ -349,6 +368,8 @@
 }
 .port-nav-links a:hover { color: var(--p-rose-dark); }
 .port-nav-links a:hover:after { width: 100%; }
+.port-nav-links a[aria-current="page"] { color: var(--p-rose-dark); }
+.port-nav-links a[aria-current="page"]:after { width: 100%; }
 .port-nav-right { display: flex; align-items: center; gap: 12px; }
 .port-live-indicator {
   display: flex;
@@ -546,7 +567,7 @@
 .port-card-footer p { font-size: 12px; color: var(--p-muted); margin: 0; }
 
 /* ---------- Sections ---------- */
-.port-section { padding: 100px 0; border-top: 1px solid var(--p-line); scroll-margin-top: 100px; }
+.port-section { padding: 116px 0 76px; border-top: 1px solid var(--p-line); scroll-margin-top: 100px; }
 .port-section--paper { background: var(--p-paper); }
 .port-section--blush { background: var(--p-blush); }
 .port-section-tag {
@@ -570,7 +591,7 @@
   line-height: 1.8;
   color: var(--p-muted);
   max-width: 660px;
-  margin: 0 0 36px;
+  margin: 0 0 26px;
 }
 .port-section-header-split {
   display: flex;
@@ -578,14 +599,14 @@
   align-items: flex-end;
   gap: 24px;
   flex-wrap: wrap;
-  margin-bottom: 34px;
+  margin-bottom: 26px;
 }
 
 /* ---------- Split layouts ---------- */
 .port-split-layout {
   display: grid;
   grid-template-columns: 1.3fr 0.9fr;
-  gap: 50px;
+  gap: 36px;
   align-items: start;
 }
 .port-split-layout.align-center { align-items: center; }
@@ -599,7 +620,7 @@
 
 /* Coordinates */
 .port-coordinates-grid {
-  margin-top: 34px;
+  margin-top: 24px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
@@ -652,7 +673,7 @@
 
 /* Pillars */
 .port-pillars-grid {
-  margin-top: 54px;
+  margin-top: 36px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -661,7 +682,7 @@
   background: rgba(255, 255, 255, 0.62);
   border: 1px solid var(--p-line-rose);
   border-radius: 22px;
-  padding: 26px;
+  padding: 22px;
   transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
 .port-pillar-card:hover { transform: translateY(-6px); box-shadow: var(--p-shadow); background: #fff; }
@@ -682,7 +703,7 @@
   background: linear-gradient(150deg, #fffdfc, var(--p-blush));
   border: 1px solid var(--p-line-rose);
   border-radius: 30px;
-  padding: 46px;
+  padding: 34px;
   box-shadow: var(--p-shadow-sm);
 }
 .port-chip {
@@ -701,7 +722,7 @@
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid var(--p-line-rose);
   border-radius: 20px;
-  padding: 24px;
+  padding: 20px;
 }
 .port-spec-header {
   display: flex;
@@ -764,10 +785,10 @@
   background: #fff;
   border: 1px solid var(--p-line-rose);
   border-radius: 26px;
-  padding: 34px;
+  padding: 26px;
   box-shadow: var(--p-shadow-sm);
 }
-.port-arch-header { border-bottom: 1px solid var(--p-line); padding-bottom: 20px; margin-bottom: 28px; }
+.port-arch-header { border-bottom: 1px solid var(--p-line); padding-bottom: 16px; margin-bottom: 20px; }
 .port-arch-header small {
   display: block;
   font-size: 10px;
@@ -783,7 +804,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 .port-arch-node {
   background: rgba(245, 231, 227, 0.45);
@@ -819,12 +840,12 @@
 }
 
 /* Projects */
-.port-projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.port-projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
 .port-project-card {
   background: #fff;
   border: 1px solid var(--p-line-rose);
   border-radius: 24px;
-  padding: 28px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1026,12 +1047,12 @@
 .port-dot.emerald { background: var(--p-green); }
 .port-dot.cyan { background: var(--p-rose); }
 .port-dot.gray { background: rgba(33, 27, 27, 0.22); }
-.port-skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.port-skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
 .port-skill-group {
   background: #fff;
   border: 1px solid var(--p-line-rose);
   border-radius: 24px;
-  padding: 28px;
+  padding: 22px;
   box-shadow: var(--p-shadow-sm);
 }
 .port-skill-group h3 { font-size: 19px; font-weight: 700; margin: 0 0 5px; }
@@ -1077,12 +1098,12 @@
 }
 
 /* Philosophy */
-.port-philosophy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.port-philosophy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .port-philosophy-card {
   background: #fff;
   border: 1px solid var(--p-line-rose);
   border-radius: 24px;
-  padding: 26px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1114,12 +1135,12 @@
 
 /* Current focus */
 .port-update-badge { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--p-muted); }
-.port-focus-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.port-focus-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .port-focus-card {
   background: #fff;
   border: 1px solid var(--p-line-rose);
   border-radius: 20px;
-  padding: 22px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1151,7 +1172,7 @@
   background: #fff;
   border: 1px solid var(--p-line-rose);
   border-radius: 18px;
-  padding: 20px 24px;
+  padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1183,7 +1204,7 @@
   transition: all 0.2s ease;
 }
 .port-copy-btn:hover { background: var(--p-rose-dark); border-color: var(--p-rose-dark); color: #fff; }
-.port-social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.port-social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
 .port-social-btn {
   background: #fff;
   border: 1px solid var(--p-line-rose);
@@ -1223,7 +1244,7 @@
   background: #fff;
   border: 1px solid var(--p-line-rose);
   border-radius: 26px;
-  padding: 34px;
+  padding: 26px;
   box-shadow: var(--p-shadow-sm);
 }
 .port-form-box h3 { font-size: 21px; font-weight: 700; margin: 0 0 7px; }
@@ -1420,4 +1441,252 @@
   .port-rail-brand.is-done { animation: none; opacity: 0; }
   .port-marquee-track { animation: none; }
   .portfolio-container * { scroll-behavior: auto; }
+}
+
+@media (max-width: 720px) {
+  .portfolio-container {
+    overflow-x: clip;
+  }
+  .port-wrap { padding: 0 20px; }
+
+  .port-nav {
+    top: 8px;
+    padding: 0 10px;
+  }
+  .port-nav-inner {
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    padding: 9px 12px 7px;
+    border-radius: 16px;
+  }
+  .port-brand { gap: 8px; }
+  .port-monogram { width: 30px; height: 30px; border-radius: 9px; }
+  .port-brand-text strong { font-size: 11px; }
+  .port-brand-text small { font-size: 8px; letter-spacing: 0.1em; }
+  .port-nav-right { margin-left: auto; }
+  .port-live-indicator { display: none; }
+  .port-btn-subtle { padding: 6px 10px; font-size: 10px; }
+  .port-nav-links {
+    display: flex;
+    order: 3;
+    width: 100%;
+    gap: 20px;
+    margin: 3px -2px 0;
+    padding: 7px 2px 2px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    border-top: 1px solid var(--p-line);
+  }
+  .port-nav-links::-webkit-scrollbar { display: none; }
+  .port-nav-links a { flex: 0 0 auto; font-size: 11px; }
+
+  .port-hero { padding: 122px 0 40px; }
+  .port-hero-grid { gap: 22px; }
+  .port-eyebrow { font-size: 9px; letter-spacing: 0.14em; margin-bottom: 12px; }
+  .port-hero-title { font-size: clamp(34px, 9.4vw, 42px); margin-bottom: 14px; }
+  .port-hero-lead { font-size: 14px; line-height: 1.65; margin-bottom: 18px; }
+  .port-hero-actions { gap: 8px 12px; }
+  .port-btn-primary,
+  .port-btn-secondary { justify-content: center; padding: 10px 13px; }
+  .port-link-subtle { padding-left: 0; }
+
+  .port-section { padding: 132px 0 46px; scroll-margin-top: 112px; }
+  .port-section-tag { font-size: 9px; letter-spacing: 0.14em; }
+  .port-section-title { font-size: clamp(27px, 7vw, 35px); }
+  .port-section-sub { font-size: 13px; line-height: 1.65; margin-bottom: 20px; }
+  .port-section-header-split { gap: 14px; margin-bottom: 20px; }
+
+  .port-convergence-card { padding: 16px; border-radius: 20px; }
+  .port-node-box { gap: 10px; padding: 10px; }
+  .port-node-box strong { font-size: 12px; }
+  .port-node-box p { font-size: 10px; }
+  .port-split-layout { gap: 20px; }
+  .port-prose p { font-size: 13px; line-height: 1.7; margin-bottom: 10px; }
+  .port-coordinates-grid { gap: 12px; padding: 14px; margin-top: 18px; }
+  .port-photo-card { max-width: 280px; margin-inline: auto; }
+  .port-pillars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+  .port-pillar-card { padding: 15px; border-radius: 16px; }
+  .port-pillar-card h3 { font-size: 16px; }
+  .port-pillar-card p { font-size: 12px; }
+  .port-banner-card { border-radius: 20px; padding: 20px 16px; }
+  .port-spec-box { padding: 16px; }
+  .port-spec-header { gap: 12px; font-size: 8px; }
+
+  .port-tabs {
+    max-width: 100%;
+    overflow-x: auto;
+    border-radius: 14px;
+    scrollbar-width: none;
+  }
+  .port-tabs::-webkit-scrollbar { display: none; }
+  .port-tab-btn { flex: 0 0 auto; padding: 9px 13px; }
+  .port-arch-card { padding: 16px; }
+  .port-arch-nodes-grid { gap: 8px; margin-bottom: 16px; }
+  .port-arch-node { padding: 13px; }
+  .port-code-box { padding: 13px; }
+  .port-code-box pre { overflow-x: auto; }
+
+  .port-projects-grid,
+  .port-skills-grid { gap: 12px; }
+  .port-project-card,
+  .port-skill-group,
+  .port-philosophy-card,
+  .port-focus-card { padding: 16px; border-radius: 17px; }
+  .port-project-title { font-size: 22px; }
+  .port-project-bottom { gap: 12px; }
+  .port-read-btn { text-align: left; }
+  .port-tag-pill { font-size: 10px; }
+  .port-infinite-gallery { margin-top: 44px; padding-top: 28px; }
+  .port-marquee-card { width: 248px; height: 174px; }
+  .port-marquee-img,
+  .port-marquee-snippet { height: 100px; }
+  .port-skills-grid { grid-template-columns: 1fr; }
+  .port-focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .port-contact-card { padding: 13px; gap: 8px; }
+  .port-contact-left strong,
+  .port-contact-left a { font-size: 12px; }
+  .port-copy-btn { padding: 8px 11px; }
+  .port-social-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .port-social-btn { flex-direction: column; gap: 6px; padding: 11px 6px; font-size: 10px; }
+  .port-form-box { padding: 18px 15px; border-radius: 19px; }
+  .port-footer { padding: 38px 0 22px; }
+  .port-footer-inner { gap: 22px; margin-bottom: 24px; }
+  .port-footer-bottom { gap: 16px; }
+  .port-modal-overlay { padding: 12px; }
+  .port-modal-card { max-height: 92dvh; border-radius: 20px; }
+  .port-modal-header { padding: 16px; }
+  .port-modal-header h2 { font-size: 23px; }
+  .port-modal-body { padding: 16px; }
+}
+
+.port-hero:not([hidden]),
+.port-section:not([hidden]) {
+  animation: portSectionEnter 480ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.port-section:not([hidden]) {
+  position: relative;
+  isolation: isolate;
+  background-image: radial-gradient(ellipse at 94% 0%, rgba(201, 143, 134, 0.15), transparent 34%);
+}
+
+.port-section:not([hidden]) .port-wrap,
+.port-section:not([hidden]) > .port-infinite-gallery {
+  position: relative;
+  z-index: 1;
+}
+
+.port-nav-links a[aria-current="page"] {
+  background: rgba(201, 143, 134, 0.12);
+  border-radius: 999px;
+  padding-inline: 9px;
+}
+
+.port-section:not([hidden]) :is(
+  .port-pillar-card,
+  .port-project-card,
+  .port-skill-group,
+  .port-philosophy-card,
+  .port-focus-card,
+  .port-arch-node,
+  .port-contact-card,
+  .port-social-btn
+) {
+  animation: portCardEnter 420ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.port-section:not([hidden]) :is(
+  .port-pillar-card,
+  .port-project-card,
+  .port-skill-group,
+  .port-philosophy-card,
+  .port-focus-card,
+  .port-arch-node,
+  .port-contact-card,
+  .port-social-btn
+):nth-child(2) { animation-delay: 55ms; }
+
+.port-section:not([hidden]) :is(
+  .port-pillar-card,
+  .port-project-card,
+  .port-skill-group,
+  .port-philosophy-card,
+  .port-focus-card,
+  .port-arch-node,
+  .port-contact-card,
+  .port-social-btn
+):nth-child(3) { animation-delay: 100ms; }
+
+.port-section:not([hidden]) :is(
+  .port-pillar-card,
+  .port-project-card,
+  .port-skill-group,
+  .port-philosophy-card,
+  .port-focus-card,
+  .port-arch-node,
+  .port-contact-card,
+  .port-social-btn
+):nth-child(4) { animation-delay: 145ms; }
+
+@keyframes portSectionEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes portCardEnter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes portNameIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes portNameTrace {
+  0%, 100% { opacity: 0.45; transform: scaleX(0.35); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .port-hero:not([hidden]),
+  .port-section:not([hidden]),
+  .port-name-animated,
+  .port-name-animated::after,
+  .port-section:not([hidden]) :is(
+    .port-pillar-card,
+    .port-project-card,
+    .port-skill-group,
+    .port-philosophy-card,
+    .port-focus-card,
+    .port-arch-node,
+    .port-contact-card,
+    .port-social-btn
+  ) {
+    animation: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .port-wrap { padding: 0 17px; }
+  .port-nav { padding: 0 8px; }
+  .port-nav-inner { padding-inline: 10px; }
+  .port-brand-text small { letter-spacing: 0.07em; }
+  .port-btn-subtle { font-size: 9px; padding: 6px 8px; }
+  .port-hero { padding-top: 118px; }
+  .port-hero-title { font-size: clamp(33px, 9.4vw, 38px); }
+  .port-hero-actions { align-items: stretch; }
+  .port-hero-actions .port-btn-primary,
+  .port-hero-actions .port-btn-secondary { flex: 1 1 100%; }
+  .port-pillars-grid,
+  .port-focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .port-pillar-card,
+  .port-focus-card { padding: 12px; }
+  .port-social-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .port-social-btn { flex-direction: column; justify-content: center; padding: 10px 4px; font-size: 9px; }
+  .port-project-bottom { align-items: flex-start; flex-wrap: wrap; }
+  .port-spec-header { flex-direction: column; }
+  .port-modal-header,
+  .port-modal-body { padding: 16px; }
 }

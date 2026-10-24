@@ -1,10 +1,10 @@
 export const profileData = {
-  name: "Aditya Pratap Singh",
+  name: "Adityapratap Singh",
   preferredName: "Aadi",
   eyebrow: "INDEPENDENT BUILDER · FOUNDER · ENGINEER",
   headline: "I build systems, explore ideas, and turn technology into things that work.",
   shortBio:
-    "I'm Aditya Pratap Singh — a founder and hands-on technology builder working across software, machine learning, automation, and connected systems. I enjoy taking ideas from experimentation to working prototypes and exploring how technology can solve meaningful problems.",
+    "I'm Adityapratap Singh — a founder and hands-on technology builder working across software, machine learning, automation, and connected systems. I enjoy taking ideas from experimentation to working prototypes and exploring how technology can solve meaningful problems.",
   extendedBio: [
     "I'm interested in what happens when software, hardware, and intelligent systems come together.",
     "My work spans web development, machine learning, automation, and connected devices. Through independent projects and startup building, I'm exploring how ideas can move from an initial concept to a functional prototype.",
@@ -172,6 +172,25 @@ export const profileData = {
         "FreeRTOS Task Scheduling",
         "CAN Bus / RS-485 Industrial Protocols",
         "Custom PCB Design with KiCAD",
+      ],
+    },
+    {
+      category: "Leadership & Communication",
+      description: "Founder-led initiative building, project ownership, and communicating technical ideas.",
+      demonstrated: [
+        "Founder & Initiative Leadership",
+        "Project Ownership & Prioritization",
+        "Collaborative Problem-solving",
+      ],
+      familiar: [
+        "Public Speaking & Presentations",
+        "Pitching Ideas & Storytelling",
+        "Team Communication & Knowledge Sharing",
+      ],
+      exploring: [
+        "Workshop Facilitation",
+        "Community Building",
+        "Partnership Development",
       ],
     },
   ],
@@ -362,7 +381,7 @@ export const verifiedProjects = [
     role: "Author & Lead Researcher",
     timeline: "2025 — 2026",
     overview:
-      "ARMO (Adaptive Runtime Meta-Orchestrator) is an advanced research framework authored by Aditya Pratap Singh exploring resilient orchestration for autonomous multi-agent AI systems. Utilizing Directed Acyclic Graph (DAG) task representations via NetworkX, structured Pydantic schemas, and local LLM execution via Ollama, ARMO addresses execution fragility and coordination overhead in autonomous AI pipelines.",
+      "ARMO (Adaptive Runtime Meta-Orchestrator) is an advanced research framework authored by Adityapratap Singh exploring resilient orchestration for autonomous multi-agent AI systems. Utilizing Directed Acyclic Graph (DAG) task representations via NetworkX, structured Pydantic schemas, and local LLM execution via Ollama, ARMO addresses execution fragility and coordination overhead in autonomous AI pipelines.",
     problem:
       "Conventional multi-agent frameworks often rely on brittle linear prompt chains or hardcoded handoffs. When an individual agent hallucinates, fails a tool invocation, or encounters contradictory requirements, entire pipelines fail or descend into expensive recursive loops. Large-scale autonomous work requires a higher-order runtime orchestrator that dynamically inspects task progress, handles failure recovery, and enforces strict execution boundaries.",
     goals: [
@@ -506,7 +525,7 @@ export const galleryArtifacts = [
   { id: "adex-logo", title: "ADEX-IN Innovation Identity", category: "Initiative Brand", image: "/images/adex-logo-white.png" },
   { id: "isl-tracking", title: "ADEX_ISL 21-pt Coordinate Extraction", category: "Computer Vision", snippet: "MediaPipe Hands // Landmark 0 (Wrist Anchor) // 21 3D Spatial Deltas" },
   { id: "homie-watchdog", title: "HOMIE MQTT Watchdog Loop", category: "IoT Telemetry", snippet: "TOPIC: homie-aadi-demo/sensors // TIMEOUT: 10.0s // STATE: NORMAL" },
-  { id: "aditya-portrait", title: "Aditya Pratap Singh (Founder)", category: "Profile Archive", image: "/images/adityasingh.jpeg" },
+  { id: "aditya-portrait", title: "Adityapratap Singh (Founder)", category: "Profile Archive", image: "/images/adityasingh.jpeg" },
   { id: "armo-graph", title: "ARMO DAG Dependency Scheduler", category: "Multi-Agent System", snippet: "NetworkX DiGraph // 5 Agent Nodes // Ollama Runtime // Cycle-Free DAG" },
   { id: "wad-archive", title: "Video Library Range Requests", category: "Full-Stack Web", snippet: "Next.js fs Scanner // 58 GB Archive // HTTP 206 Partial Content" },
   { id: "white-logo", title: "ADEX-IN Accessible Design", category: "Design System", image: "/images/white-logo.png" },
