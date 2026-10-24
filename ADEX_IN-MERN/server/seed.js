@@ -4,7 +4,7 @@ import TeamMember from "./models/TeamMember.js";
 import Product from "./models/Product.js";
 import { defaultTeam, defaultProducts } from "./data/defaults.js";
 
-if (!process.env.MONGODB_URI) throw new Error("Set MONGODB_URI in server/.env first.");
+if (!process.env.MONGODB_URI) throw new Error("Set MONGODB_URI in .env first.");
 await mongoose.connect(process.env.MONGODB_URI);
 await TeamMember.deleteMany({});
 await Product.deleteMany({});

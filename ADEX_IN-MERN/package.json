@@ -1,0 +1,26 @@
+{
+  "name": "adex-in-mern",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node server/dev.js",
+    "build": "vite build client",
+    "start": "node server/index.js",
+    "seed": "node server/seed.js"
+  },
+  "description": "A single deployable MERN application serving the ADEX_IN React site and Express API together.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "mongoose": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "vite": "latest"
+  }
+}

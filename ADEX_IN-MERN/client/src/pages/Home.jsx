@@ -63,10 +63,10 @@ export default function Home() {
     }, introDuration);
     const removeTimer = window.setTimeout(() => setIntroMounted(false), introDuration + 700);
 
-    fetch(`${import.meta.env.VITE_API_URL || ""}/api/team`).then(r => r.ok ? r.json() : Promise.reject()).then(d => {
+    fetch("/api/team").then(r => r.ok ? r.json() : Promise.reject()).then(d => {
       if (Array.isArray(d) && d.length) { setTeam(d); setApiStatus("api"); }
     }).catch(() => {});
-    fetch(`${import.meta.env.VITE_API_URL || ""}/api/products`).then(r => r.ok ? r.json() : Promise.reject()).then(d => {
+    fetch("/api/products").then(r => r.ok ? r.json() : Promise.reject()).then(d => {
       if (Array.isArray(d) && d.length) { setProducts(d); setApiStatus("api"); }
     }).catch(() => {});
 
